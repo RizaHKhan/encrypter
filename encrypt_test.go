@@ -28,7 +28,6 @@ func TestEncryptDecrypt(t *testing.T) {
 		t.Fatal("Error encrypting file:", err)
 	}
 	defer os.Remove(encryptedFile) // Defer the file removal
-	defer os.Remove(decryptedFile) // Defer the file removal
 
 	if err := decrypt(encryptedFile, decryptedFile, key); err != nil {
 		t.Fatal("Error decrypting file:", err)
