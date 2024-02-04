@@ -1,19 +1,40 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
 	// This should come from outside
-	key := []byte("your-32-byte-aes") // Replace with your key
+	env := os.Getenv("MY_INFO_KEY")
 
-	// Encrypt a file
-	// These should be arguments
-	if err := encrypt("./plaintext.txt", "./encrypted.bin", key); err != nil {
-		panic(err)
+	if env == "" {
+		fmt.Println("Environment variable MY_APP_KEY is not set.")
+		return
 	}
-	println("Encryption successful")
 
-	// Decrypt the file
-	if err := decrypt("./encrypted.bin", "./decrypted.txt", key); err != nil {
-		panic(err)
+	if len(os.Args) < 4 {
+		fmt.Println("Usage: crypter <operation> <input_file> <output_file>")
+		return
 	}
-	println("Decryption successful")
+
+	operation := os.Args[1]
+	inputFile := os.Args[2]
+	outputFile := os.Args[3]
+
+	key := []byte(env)
+
+	switch operation {
+	case "encrypt":
+		if err := encrypt(inputFile, outputFile, key); err != nil {
+			panic(err)
+		}
+		println("Encryption successful")
+	case "decrypt":
+		if err := decrypt(inputFile, outputFile, key); err != nil {
+			panic(err)
+		}
+		println("Decryption successful")
+	}
 }
