@@ -7,7 +7,7 @@ import (
 
 func main() {
 	// This should come from outside
-	env := os.Getenv("MY_INFO_KEY")
+	env := os.Getenv("ENCRYPTER_KEY")
 
 	if env == "" {
 		fmt.Println("Environment variable MY_APP_KEY is not set.")
