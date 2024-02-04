@@ -10,7 +10,7 @@ func main() {
 	env := os.Getenv("ENCRYPTER_KEY")
 
 	if env == "" {
-		fmt.Println("Environment variable MY_APP_KEY is not set.")
+		fmt.Println("Environment variable ENCRYPTER_KEY is not set.")
 		return
 	}
 
