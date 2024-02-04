@@ -30,11 +30,11 @@ func main() {
 		if err := encrypt(inputFile, outputFile, key); err != nil {
 			panic(err)
 		}
-		println("Encryption successful")
+		println("Action successful")
 	case "decrypt":
 		if err := decrypt(inputFile, outputFile, key); err != nil {
 			panic(err)
 		}
-		println("Decryption successful")
+		println("Action successful")
 	}
 }
